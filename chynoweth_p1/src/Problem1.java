@@ -7,6 +7,7 @@ public class Problem1 {
         Scanner in = new Scanner(System.in);
         int runs = 0;
         int numCorrect = 0;
+        int cont = 1;
 
         // scan in chosen difficulty level
         System.out.println("Enter a level of difficulty: ");
@@ -17,21 +18,26 @@ public class Problem1 {
         int arithmetic = in.nextInt();
 
         // while loop runs for 10 questions
-        while (runs < 10) {
-            // generates a question using the chosen difficulty and arithmetic level
-            // if answer is correct, adds 1 to numCorrect
-            numCorrect += generateQuestion(difficulty, arithmetic);
-            runs++;
+        while (cont == 1){
+            while (runs < 10) {
+                // generates a question using the chosen difficulty and arithmetic level
+                // if answer is correct, adds 1 to numCorrect
+                numCorrect += generateQuestion(difficulty, arithmetic);
+                runs++;
+            }
+            // calculate grade percent by dividing numCorrect by 10
+            // then give proper response depending on grade
+            double grade = numCorrect / 10.0;
+            if (grade < .75) {
+                System.out.println("Please ask your teacher for extra help.");
+            } else {
+                System.out.println("Congratulations, you are ready to go on to the next level!");
+            }
+            System.out.println("Press 1 to continue, or 0 to quit: ");
+            cont = in.nextInt();
         }
 
-        // calculate grade percent by dividing numCorrect by 10
-        // then give proper response depending on grade
-        double grade = numCorrect / 10.0;
-        if (grade < .75) {
-            System.out.println("Please ask your teacher for extra help.");
-        } else {
-            System.out.println("Congratulations, you are ready to go on to the next level!");
-        }
+
     }
 
     private static int generateQuestion(int difficulty, int arithmetic) {
